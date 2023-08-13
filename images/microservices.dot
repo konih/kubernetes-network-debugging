@@ -1,0 +1,150 @@
+digraph G {
+	rankdir=LR;
+	0->1[ style=invis ];
+	1->2[ style=invis ];
+	2->3[ style=invis ];
+	3->4[ style=invis ];
+	4->5[ style=invis ];
+	5->6[ style=invis ];
+	rs_adservice_76b59c7744->pod_adservice_76b59c7744_8r4q5[ style=dashed ];
+	rs_cartservice_79ffddbfc9->pod_cartservice_79ffddbfc9_cjdpk[ style=dashed ];
+	rs_checkoutservice_67b7cc98bd->pod_checkoutservice_67b7cc98bd_zlctr[ style=dashed ];
+	rs_currencyservice_86f65c677b->pod_currencyservice_86f65c677b_zssqj[ style=dashed ];
+	rs_emailservice_5b9b6b4978->pod_emailservice_5b9b6b4978_xc66h[ style=dashed ];
+	rs_frontend_758559b46->pod_frontend_758559b46_9v9nj[ style=dashed ];
+	rs_loadgenerator_7f5bb4f549->pod_loadgenerator_7f5bb4f549_ldb9f[ style=dashed ];
+	rs_paymentservice_84d58ff866->pod_paymentservice_84d58ff866_fjcrl[ style=dashed ];
+	rs_productcatalogservice_65bd9bb7dd->pod_productcatalogservice_65bd9bb7dd_mxlk9[ style=dashed ];
+	rs_recommendationservice_5c5f746db6->pod_recommendationservice_5c5f746db6_xgkbs[ style=dashed ];
+	rs_redis_cart_65f8cb8d5f->pod_redis_cart_65f8cb8d5f_sqrlv[ style=dashed ];
+	rs_shippingservice_b7b489f4b->pod_shippingservice_b7b489f4b_c6msb[ style=dashed ];
+	deploy_adservice->rs_adservice_76b59c7744[ style=dashed ];
+	deploy_cartservice->rs_cartservice_79ffddbfc9[ style=dashed ];
+	deploy_checkoutservice->rs_checkoutservice_67b7cc98bd[ style=dashed ];
+	deploy_currencyservice->rs_currencyservice_86f65c677b[ style=dashed ];
+	deploy_emailservice->rs_emailservice_5b9b6b4978[ style=dashed ];
+	deploy_frontend->rs_frontend_758559b46[ style=dashed ];
+	deploy_loadgenerator->rs_loadgenerator_7f5bb4f549[ style=dashed ];
+	deploy_paymentservice->rs_paymentservice_84d58ff866[ style=dashed ];
+	deploy_productcatalogservice->rs_productcatalogservice_65bd9bb7dd[ style=dashed ];
+	deploy_recommendationservice->rs_recommendationservice_5c5f746db6[ style=dashed ];
+	deploy_redis_cart->rs_redis_cart_65f8cb8d5f[ style=dashed ];
+	deploy_shippingservice->rs_shippingservice_b7b489f4b[ style=dashed ];
+	pod_adservice_76b59c7744_8r4q5->svc_adservice[ dir=back ];
+	pod_cartservice_79ffddbfc9_cjdpk->svc_cartservice[ dir=back ];
+	pod_checkoutservice_67b7cc98bd_zlctr->svc_checkoutservice[ dir=back ];
+	pod_currencyservice_86f65c677b_zssqj->svc_currencyservice[ dir=back ];
+	pod_emailservice_5b9b6b4978_xc66h->svc_emailservice[ dir=back ];
+	pod_frontend_758559b46_9v9nj->svc_frontend[ dir=back ];
+	pod_frontend_758559b46_9v9nj->svc_frontend_external[ dir=back ];
+	pod_paymentservice_84d58ff866_fjcrl->svc_paymentservice[ dir=back ];
+	pod_productcatalogservice_65bd9bb7dd_mxlk9->svc_productcatalogservice[ dir=back ];
+	pod_recommendationservice_5c5f746db6_xgkbs->svc_recommendationservice[ dir=back ];
+	pod_redis_cart_65f8cb8d5f_sqrlv->svc_redis_cart[ dir=back ];
+	pod_shippingservice_b7b489f4b_c6msb->svc_shippingservice[ dir=back ];
+	subgraph cluster_microservices_demo {
+	label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/ns-128.png" /></TD></TR><TR><TD>microservices-demo</TD></TR></TABLE>>;
+	labeljust=l;
+	style=dotted;
+	subgraph rank_0 {
+	rank=same;
+	style=invis;
+	0 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_1 {
+	rank=same;
+	style=invis;
+	1 [ height=0, margin=0, style=invis, width=0 ];
+	deploy_adservice [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/deploy-128.png" /></TD></TR><TR><TD>adservice</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_cartservice [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/deploy-128.png" /></TD></TR><TR><TD>cartservice</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_checkoutservice [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/deploy-128.png" /></TD></TR><TR><TD>checkoutservice</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_currencyservice [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/deploy-128.png" /></TD></TR><TR><TD>currencyservice</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_emailservice [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/deploy-128.png" /></TD></TR><TR><TD>emailservice</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_frontend [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/deploy-128.png" /></TD></TR><TR><TD>frontend</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_loadgenerator [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/deploy-128.png" /></TD></TR><TR><TD>loadgenerator</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_paymentservice [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/deploy-128.png" /></TD></TR><TR><TD>paymentservice</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_productcatalogservice [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/deploy-128.png" /></TD></TR><TR><TD>productcatalogservice</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_recommendationservice [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/deploy-128.png" /></TD></TR><TR><TD>recommendationservice</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_redis_cart [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/deploy-128.png" /></TD></TR><TR><TD>redis-cart</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_shippingservice [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/deploy-128.png" /></TD></TR><TR><TD>shippingservice</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_2 {
+	rank=same;
+	style=invis;
+	2 [ height=0, margin=0, style=invis, width=0 ];
+	rs_adservice_76b59c7744 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/rs-128.png" /></TD></TR><TR><TD>adservice-76b59c7744</TD></TR></TABLE>>, penwidth=0 ];
+	rs_cartservice_79ffddbfc9 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/rs-128.png" /></TD></TR><TR><TD>cartservice-79ffddbfc9</TD></TR></TABLE>>, penwidth=0 ];
+	rs_checkoutservice_67b7cc98bd [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/rs-128.png" /></TD></TR><TR><TD>checkoutservice-67b7cc98bd</TD></TR></TABLE>>, penwidth=0 ];
+	rs_currencyservice_86f65c677b [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/rs-128.png" /></TD></TR><TR><TD>currencyservice-86f65c677b</TD></TR></TABLE>>, penwidth=0 ];
+	rs_emailservice_5b9b6b4978 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/rs-128.png" /></TD></TR><TR><TD>emailservice-5b9b6b4978</TD></TR></TABLE>>, penwidth=0 ];
+	rs_frontend_758559b46 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/rs-128.png" /></TD></TR><TR><TD>frontend-758559b46</TD></TR></TABLE>>, penwidth=0 ];
+	rs_loadgenerator_7f5bb4f549 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/rs-128.png" /></TD></TR><TR><TD>loadgenerator-7f5bb4f549</TD></TR></TABLE>>, penwidth=0 ];
+	rs_paymentservice_84d58ff866 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/rs-128.png" /></TD></TR><TR><TD>paymentservice-84d58ff866</TD></TR></TABLE>>, penwidth=0 ];
+	rs_productcatalogservice_65bd9bb7dd [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/rs-128.png" /></TD></TR><TR><TD>productcatalogservice-65bd9bb7dd</TD></TR></TABLE>>, penwidth=0 ];
+	rs_recommendationservice_5c5f746db6 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/rs-128.png" /></TD></TR><TR><TD>recommendationservice-5c5f746db6</TD></TR></TABLE>>, penwidth=0 ];
+	rs_redis_cart_65f8cb8d5f [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/rs-128.png" /></TD></TR><TR><TD>redis-cart-65f8cb8d5f</TD></TR></TABLE>>, penwidth=0 ];
+	rs_shippingservice_b7b489f4b [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/rs-128.png" /></TD></TR><TR><TD>shippingservice-b7b489f4b</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_3 {
+	rank=same;
+	style=invis;
+	3 [ height=0, margin=0, style=invis, width=0 ];
+	pod_adservice_76b59c7744_8r4q5 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/pod-128.png" /></TD></TR><TR><TD>adservice-76b59c7744-8r4q5</TD></TR></TABLE>>, penwidth=0 ];
+	pod_cartservice_79ffddbfc9_cjdpk [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/pod-128.png" /></TD></TR><TR><TD>cartservice-79ffddbfc9-cjdpk</TD></TR></TABLE>>, penwidth=0 ];
+	pod_checkoutservice_67b7cc98bd_zlctr [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/pod-128.png" /></TD></TR><TR><TD>checkoutservice-67b7cc98bd-zlctr</TD></TR></TABLE>>, penwidth=0 ];
+	pod_currencyservice_86f65c677b_zssqj [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/pod-128.png" /></TD></TR><TR><TD>currencyservice-86f65c677b-zssqj</TD></TR></TABLE>>, penwidth=0 ];
+	pod_emailservice_5b9b6b4978_xc66h [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/pod-128.png" /></TD></TR><TR><TD>emailservice-5b9b6b4978-xc66h</TD></TR></TABLE>>, penwidth=0 ];
+	pod_frontend_758559b46_9v9nj [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/pod-128.png" /></TD></TR><TR><TD>frontend-758559b46-9v9nj</TD></TR></TABLE>>, penwidth=0 ];
+	pod_loadgenerator_7f5bb4f549_ldb9f [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/pod-128.png" /></TD></TR><TR><TD>loadgenerator-7f5bb4f549-ldb9f</TD></TR></TABLE>>, penwidth=0 ];
+	pod_paymentservice_84d58ff866_fjcrl [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/pod-128.png" /></TD></TR><TR><TD>paymentservice-84d58ff866-fjcrl</TD></TR></TABLE>>, penwidth=0 ];
+	pod_productcatalogservice_65bd9bb7dd_mxlk9 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/pod-128.png" /></TD></TR><TR><TD>productcatalogservice-65bd9bb7dd-mxlk9</TD></TR></TABLE>>, penwidth=0 ];
+	pod_recommendationservice_5c5f746db6_xgkbs [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/pod-128.png" /></TD></TR><TR><TD>recommendationservice-5c5f746db6-xgkbs</TD></TR></TABLE>>, penwidth=0 ];
+	pod_redis_cart_65f8cb8d5f_sqrlv [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/pod-128.png" /></TD></TR><TR><TD>redis-cart-65f8cb8d5f-sqrlv</TD></TR></TABLE>>, penwidth=0 ];
+	pod_shippingservice_b7b489f4b_c6msb [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/pod-128.png" /></TD></TR><TR><TD>shippingservice-b7b489f4b-c6msb</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_4 {
+	rank=same;
+	style=invis;
+	4 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_5 {
+	rank=same;
+	style=invis;
+	5 [ height=0, margin=0, style=invis, width=0 ];
+	svc_adservice [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/svc-128.png" /></TD></TR><TR><TD>adservice</TD></TR></TABLE>>, penwidth=0 ];
+	svc_cartservice [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/svc-128.png" /></TD></TR><TR><TD>cartservice</TD></TR></TABLE>>, penwidth=0 ];
+	svc_checkoutservice [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/svc-128.png" /></TD></TR><TR><TD>checkoutservice</TD></TR></TABLE>>, penwidth=0 ];
+	svc_currencyservice [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/svc-128.png" /></TD></TR><TR><TD>currencyservice</TD></TR></TABLE>>, penwidth=0 ];
+	svc_emailservice [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/svc-128.png" /></TD></TR><TR><TD>emailservice</TD></TR></TABLE>>, penwidth=0 ];
+	svc_frontend [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/svc-128.png" /></TD></TR><TR><TD>frontend</TD></TR></TABLE>>, penwidth=0 ];
+	svc_frontend_external [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/svc-128.png" /></TD></TR><TR><TD>frontend-external</TD></TR></TABLE>>, penwidth=0 ];
+	svc_paymentservice [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/svc-128.png" /></TD></TR><TR><TD>paymentservice</TD></TR></TABLE>>, penwidth=0 ];
+	svc_productcatalogservice [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/svc-128.png" /></TD></TR><TR><TD>productcatalogservice</TD></TR></TABLE>>, penwidth=0 ];
+	svc_recommendationservice [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/svc-128.png" /></TD></TR><TR><TD>recommendationservice</TD></TR></TABLE>>, penwidth=0 ];
+	svc_redis_cart [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/svc-128.png" /></TD></TR><TR><TD>redis-cart</TD></TR></TABLE>>, penwidth=0 ];
+	svc_shippingservice [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/home/koni/Projects/Presentations/k8sviz/bin/icons/svc-128.png" /></TD></TR><TR><TD>shippingservice</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_6 {
+	rank=same;
+	style=invis;
+	6 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+
+}
+;
+
+}

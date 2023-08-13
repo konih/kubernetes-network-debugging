@@ -1,0 +1,30 @@
+{
+  "spec": {
+    "ephemeralContainers": [
+      {
+        "image": "nicolaka/netshoot",
+        "name": "core-dump",
+        "args": [
+          "gcore",
+          "-o /tmp/shared/core-dump",
+          "36"
+        ],
+        "tty":true,
+        "stdin": true,
+        "securityContext": {
+          "capabilities": {
+            "add": [
+              "SYS_PTRACE"
+            ]
+          }
+        },
+        "volumeMounts": [
+          {
+            "mountPath": "/tmp/shared",
+            "name": "shared"
+          }
+        ]
+      }
+    ]
+  }
+}'
