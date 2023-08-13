@@ -843,7 +843,7 @@ spec:
             port:
               number: 80
         path: /
-        pathType: Exact
+        pathType: Prefix
   tls:
   - hosts:
     - demo-frontend.experimental-gke-003.paas-oat.rewe.local
