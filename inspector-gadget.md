@@ -17,11 +17,9 @@ Understanding and debugging these differences is crucial for a smooth and effici
 - Collects kernel-level information like system calls or network activity and enriches it with Kubernetes metadata.
 - Mechanism for deploying eBPF programs to Kubernetes clusters.
 
----
 
 # eBPF
 
-TODO: insert graphic about eBPF
 
 - eBPF is a Linux kernel technology that allows running programs triggered by events in the kernel inside the user space.
 - programs are written in a restricted subset of C and compiled to a special bytecode.

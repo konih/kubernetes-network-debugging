@@ -12,6 +12,9 @@ style: |
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
   }
+  section.default h1 {
+    text-align: center;
+  }
 ---
 
 ![bg opacity:.5](images/img.png)
@@ -51,6 +54,8 @@ style: |
 
 # How does it work?
 
+<font size="4">
+
 1. Creates a **mirrord-agent** in the cluster:
   - 🔄 Clones/steals & forwards traffic
 2. Overrides local process' syscalls to:
@@ -58,6 +63,12 @@ style: |
   - 🔜 Send out traffic from remote pod.
   - 📂 Access remote file system.
   - 🌍 Merge pod's environment with local.
+
+</font>
+
+<div align="center">
+<img height="300px" src="./images/mirrord_arch.png">
+</div>
 
 ---
 
@@ -75,7 +86,6 @@ style: |
 
 ---
 
-<!-- _class: invert -->
 
 # Installation on Cluster?
 
@@ -213,7 +223,8 @@ spec:
 </div>
 <div class="right">
     <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; height: 100%;">
-        <img src="images/inspector_gadget_logo.png" alt="Inspector Gadget Logo" style="margin-bottom: 20px;">
+        <img src="images/mirrord_logo.png" alt="Inspector Gadget Logo" style="margin-bottom: 20px;">
+vs
         <img src="images/telepresence_logo.png" alt="Telepresence Logo">
     </div>
 </div>
@@ -222,13 +233,7 @@ spec:
 
 ---
 
-Certainly! Here's a slide to announce a live demo:
-
----
-
 <!-- _class: default -->
-
-![bg center:50% opacity:.8](images/demo_bg.png)
 
 
 
@@ -240,3 +245,147 @@ Certainly! Here's a slide to announce a live demo:
 
 </div>
 
+---
+
+<!-- _class: center -->
+
+<div align="center">
+<img src="images/inspector_gadget_logo.png" width="600px"><br>
+</div>
+
+<font size="5">
+
+- 🔧 Collection of eBPF-based tools for Kubernetes apps.
+- 📊 Collects low-level kernel data.
+- 🏷️ Enriches with Kubernetes metadata.
+- 🚀 Mechanism to deploy eBPF tools to Kubernetes clusters.
+- 🖥️ CLI tool `ig` for tracing containers.
+- 📈 Prometheus metrics endpoint.
+
+</font>
+
+---
+
+# Introduction to eBPF 🔎
+
+<div class="columns">
+<div class="left">
+
+
+
+- 🖥️ Linux kernel technology.
+- 📝 Restricted C subset programs.
+- 🔄 Compiled to special bytecode.
+- 🛡️ Validated before kernel execution.
+
+</div>
+<div class="right">
+
+```python
+from __future__ import print_function
+from bcc import BPF
+from bcc.utils import printb
+
+# load BPF program
+b = BPF(text="""
+TRACEPOINT_PROBE(random, urandom_read) {
+    // args is from /sys/kernel/debug/tracing/events/random/urandom_read/format
+    bpf_trace_printk("%d\\n", args->got_bits);
+    return 0;
+}
+""")
+
+# header
+print("%-18s %-16s %-6s %s" % ("TIME(s)", "COMM", "PID", "GOTBITS"))
+
+# format output
+while 1:
+    try:
+        (task, pid, cpu, flags, ts, msg) = b.trace_fields()
+    except ValueError:
+        continue
+    except KeyboardInterrupt:
+        exit()
+    printb(b"%-18.9f %-16s %-6d %s" % (ts, task, pid, msg))
+```
+
+</div>
+</div>
+
+---
+
+<!-- _footer: "Source: https://www.brendangregg.com/ebpf.html" -->
+
+![ebpf.png](images%2Febpf.png)
+
+---
+
+# The Gadgets 🧰
+
+![ height: 80%](images%2Fgadgets.png)
+
+---
+
+# **Installing Inspector Gadget** 🛠️
+
+Install Inspector Gadget using [Krew](https://krew.sigs.k8s.io/) kubectl plugin manager:
+
+```bash
+$ kubectl krew install gadget
+```
+
+Deploy Inspector Gadget on Kubernetes:
+
+```bash
+$ kubectl gadget deploy
+
+Creating Namespace/gadget...
+...
+Creating DaemonSet/gadget...
+...
+Inspektor Gadget successfully deployed
+```
+
+---
+
+# Inspektor Gadget Overview 🕵️‍♂️
+
+<div class="columns">
+<div class="left">
+
+- Provides a trace Custom Resource Definition (CRD) for control.
+- Interaction through kubectl gadget CLI.
+- Gadget pod has a Kubernetes controller to perform CR actions.
+- eBPF program installation via tracers from trace CRD.
+- eBPF: Inbuilt kernel VM allowing userspace scripts in kernel space.
+
+</div>
+<div class="right">
+
+![width:350px](images/InspectorGadget.drawio.png)
+
+</div>
+</div>
+
+---
+
+<div style="text-align: center; margin-top: 40px;">
+
+<font size="20">
+🎥 Live Demo
+</font>
+
+</div>
+
+---
+
+# Further Resources 🔗
+
+- [mirrord](https://mirror-networking.gitbook.io/docs/)
+- [inspector gadget](https://github.com/inspektor-gadget/inspektor-gadget#readme)
+- [eBPF Basics](https://ebpf.io/what-is-ebpf/)
+
+Related Tools
+
+- [Krew kubectl Plugin Manager](https://krew.sigs.k8s.io/)
+- [BPF Compiler Collection (BCC)](https://github.com/iovisor/bcc)
