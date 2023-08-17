@@ -10,10 +10,9 @@ Debugging in Kubernetes
 
 # What is **mirrord**?
 
-- Test your code in the cloud from the beginning.
-- No CI, no deployment hassles.
 - It connects a local process to your Kubernetes cluster.
-- It doesn't just mirror traffic. It does more.
+- Comes with a CLI and plugins for IntelliJ and VS Code.
+- Debug your code in the cloud, without deploying it.
 - Lets you test locally in cloud conditions:
     - Without local deployment
     - Without CI/CD
@@ -23,12 +22,14 @@ Debugging in Kubernetes
 
 # How does it work?
 
-1. Hooks to the local process input/output:
-    - Network traffic
-    - File access
-    - Environment variables
-2. Proxies them to the Kubernetes cluster.
-3. Code “thinks” it’s running in the cloud.
+1. Creates a mirrord-agent in the cluster, that:
+  - clones or steals traffic and forwards it to the local process
+  - forwards traffic from the local process to the cluster
+2. Override the local process' syscalls to:
+   - Listen to incoming traffic from the agent, instead of local sockets.
+   - Intercept outgoing traffic and send it out from the remote pod, instead of locally.
+   - Read and write files to the remote file system.
+   - Merge the pod's environment variables with the local process' environment variables.
 
 ---
 
@@ -48,10 +49,43 @@ Debugging in Kubernetes
 
 # Installation on Cluster?
 
+<div class="columns">
+<div class="left">
+
 - Does **NOT** install anything persistently.
 - Spawns a short-living pod/container for the proxy.
 - Works with Kubernetes API. Only needs `kubectl` configured.
-- If restricted, allow image: `ghcr.io/metalbear-co/mirrord`.
+- Not compatible with any Pod Security Standards
+</div>
+<div class="right">
+
+```yaml
+    apiVersion: v1
+    kind: Pod
+    spec:
+      containers:
+       - image: ghcr.io/metalbear-co/mirrord:3.56.1
+         securityContext:
+           capabilities:
+             add:
+               - SYS_ADMIN
+               - SYS_PTRACE
+               - NET_RAW
+               - NET_ADMIN
+    volumes:
+      - hostPath:
+          path: /run
+          type: ""
+        name: hostrun
+      - hostPath:
+          path: /var
+          type: ""
+```
+
+</div>
+
+</div>
+
 
 ---
 
@@ -72,8 +106,6 @@ Debugging in Kubernetes
     - `sudo codesign --remove-signature ./<your-binary>`
 
 ---
-
-# Domain Resolution Issue?
 
 - If in `feature.fs.mode` set to local, change to `localwithoverrides`.
 - Ensures correct reading of Kubelet-generated files like `/etc/resolv.conf`.

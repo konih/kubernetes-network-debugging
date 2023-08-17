@@ -1,9 +1,9 @@
-h---
+---
 marp: true
 theme: default
 paginate: true
 class: invert
-header: 'Kubernetes Network Debugging'
+header: 'Advanced Kubernetes Debugging
 footer: 'Konrad Heimel 23-06-08'
 style: |
   .columns {
@@ -40,6 +40,11 @@ style: |
 
 1. Using mirrord to develop inside of kubernetes
 
+---
+
+Agenda
+
+---
 
 # Using mirrord to develop inside of kubernetes
 
