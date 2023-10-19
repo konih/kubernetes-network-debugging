@@ -44,6 +44,23 @@ style: |
 
 ---
 
+# Containers and Networking Challenges for Developers 📦🌐
+<font size="5">
+
+### Consistency in Containers 🔄
+
+- Application + Dependencies = Consistent **file** environment.
+
+### Networking Issues ⚠️
+- Containers don't ensure networking consistency.
+- **Network differences** ➡️ Main source of errors.
+
+### Kubernetes Locally? 🤔💻
+- Replicating full Kubernetes = Resource intensive & confusing.
+- Not feasible for every developer.
+</font>
+---
+
 ![bg right:25%](images/bg_vert5.png)
 
 # What is **mirrord**? 🧩
@@ -252,6 +269,57 @@ vs
 
 ---
 
+# Introduction to Ephemeral Containers 🌫️📦
+
+- Not part of the pod's spec, but born as needed. 🚀
+- Share namespaces with containers in the same pod. 🤝
+- Powerful for understanding & diagnosing app behavior. 🔍
+- Stable since Kubernetes v1.25 ✅
+- Once created, they can't be deleted. ❌🗑️
+
+---
+
+# Using Ephemeral Containers for Debugging 🐞🔧
+
+- Inspect a running pod without halting its operation. 🛠️
+- Don't need tools outside your production image. 🖼️
+- Communicate over localhost, use IPC, inspect processes, and access shared volumes. 🔗🗄️
+- Debug command example:
+  ```bash
+  k debug --image=nicolaka/netshoot -it -- /bin/bash
+  ```
+---
+
+### Basic Network Debugging Commands 🌐
+1. `ping <hostname/IP>` - Check network connectivity.
+2. `netstat -tuln` - Display listening ports.
+3. `nslookup <hostname>` - DNS lookup.
+4. `traceroute <hostname/IP>` - Trace network path.
+5. `ifconfig` or `ip a` - Display network interfaces.
+
+---
+
+# Kubernetes and Linux Namespaces
+<!-- _class: default -->
+
+<div class="columns">
+<div>
+
+- Linux namespaces provide isolated environments with unique resources
+- The container runtime leveraged by Kubernetes creates a new set of namespaces for each pod, ensuring isolated network, IPC, UTS, and PID environments.
+- Sidecar containers, deployed in the same pod as the primary container, share most namespaces, enabling inter-container communication.
+
+</div>
+
+<div>
+
+![test](images/pod_sidecar_namespaces.svg)
+
+</div>
+</div>
+
+---
+
 <!-- _class: center -->
 
 <div align="center">
@@ -317,6 +385,7 @@ while 1:
 
 </div>
 </div>
+
 
 ---
 

@@ -82,7 +82,7 @@ Common Anti-Patterns:
 - Ephemeral containers are short-lived, not defined in the pod's specification, and do not share in the pod's lifecycle.
 - They come to life as needed, sharing namespaces with an existing container in the same pod.
 - They provide powerful tools for understanding and diagnosing the behavior of applications.
-- Stable in Kubernetes v1.25, beta in v1.23
+- Stable since Kubernetes v1.25
 
 ---
 #  Using Ephemeral Containers for Debugging
