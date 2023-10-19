@@ -135,29 +135,25 @@ metadata:
   name: mirrord-agent-lgfcl4ujer-mxbgp
 spec:
   containers:
-    - image: ghcr.io/metalbear-co/mirrord:3.56.1
-      name: mirrord-agent
-      securityContext:
-        capabilities:
-          add:
-            - SYS_ADMIN
-            - SYS_PTRACE
-            - NET_RAW
-            - NET_ADMIN
-        runAsGroup: 7318
-      volumeMounts:
-        - mountPath: /host/run
-          name: hostrun
-        - mountPath: /host/var
-          name: hostvar
-  hostPID: true
-  volumes:
-    - hostPath:
-        path: /run
-      name: hostrun
-    - hostPath:
-        path: /var
-      name: hostvar
+    - image: cdp-docker-demo-images.artifactory.rewe.local/cicd/cdp-demo/spring-boot-greenfield-app:main-074f468c
+      name: greenfield
+  ephemeralContainers:
+  - command:
+      - ./mirrord-agent
+      - -l
+      - "49332"
+      - -e
+    image: ghcr.io/metalbear-co/mirrord:3.56.1
+    imagePullPolicy: IfNotPresent
+    name: mirrord-agent-mszkpupjeb
+    securityContext:
+      capabilities:
+        add:
+          - SYS_ADMIN
+          - SYS_PTRACE
+          - NET_RAW
+          - NET_ADMIN
+      runAsGroup: 44448
 ```
 </font>
 
