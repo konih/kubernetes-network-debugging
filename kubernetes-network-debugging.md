@@ -27,7 +27,7 @@ style: |
 
 # Kubernetes Network Debugging
 
-## mirrord and Inspector Gadget
+## Tools and Techniques to make one of the most frustrating parts of Kubernetes easier
 
 <!-- footer: Konrad F. Heimel, 2023-10-19 -->
 
@@ -39,8 +39,12 @@ style: |
 
 - **mirrord** 💻<br>
   Transfer your IDE into the Kubernetes cluster
+- **ephemeral containers** 📦<br>
+  Using debug tools without bloating your images
 - **inspector gadget** 🔍<br>
   Cloud-native debugging using eBPF
+- **kubeshark** 🦈<br>
+  API traffic analyzer for Kubernetes
 
 ---
 
@@ -459,12 +463,55 @@ Inspektor Gadget successfully deployed
 
 ---
 
+<div align="center">
+<img src="images/kubeshark-logo.png"><br>
+</div>
+
+
+# Kubeshark – API Traffic Analyzer for Kubernetes 🦈
+
+
+- Think Wireshark re-invented for Kubernetes 🧰
+- Real-time, identity-aware, protocol-level visibility into K8s API traffic 📊
+
+---
+
+# Kubeshark in Action 🌐
+
+1. **Network Analysis**: Real-time protocol-level visibility & troubleshooting
+2. **Investigating Traffic**: Filter and inspect pod-to-pod communication
+3. **Security Auditing**: Identify suspicious traffic patterns & threats
+4. **Historic Traffic Analysis**: Analyze past traffic snapshots
+5. **Connectivity Troubleshooting**: Diagnose network errors & latency issues
+
+---
+
+![img.png](images/kubeshark-screenshot1.png)
+
+---
+
+![img_1.png](images/kubeshark-screenshot2.png)
+
+---
+
+# Kubeshark: Tracing Encrypted Traffic 🦈🔒
+
+- **How?** Using **eBPF** to sniff encrypted TLS traffic without decryption.
+  - Hooks into OpenSSL & Go's crypto/tls package.
+- **Deploy Kubeshark with TLS Sniffing**:
+  ```bash
+  kubeshark tap --tls -n kh-demo
+  ```
+- Supports OpenSSL & Go's crypto/tls.
+
+---
+
 # Further Resources 🔗
 
 - [mirrord](https://mirror-networking.gitbook.io/docs/)
 - [inspector gadget](https://github.com/inspektor-gadget/inspektor-gadget#readme)
 - [eBPF Basics](https://ebpf.io/what-is-ebpf/)
-
+- [kubeshark](https://kubeshark.co/)
 Related Tools
 
 - [Krew kubectl Plugin Manager](https://krew.sigs.k8s.io/)
