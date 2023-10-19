@@ -15,13 +15,21 @@ style: |
   section.default h1 {
     text-align: center;
   }
+  section.invert h1 {
+    text-align: center;
+  }
+  section.invert h2 {
+    text-align: center;
+  }
 ---
+<!-- _class: invert -->
+![bg opacity:.5](images/img_1.png)
 
-![bg opacity:.5](images/img.png)
+# Kubernetes Network Debugging
 
-# Advanced Kubernetes Debugging Techniques
+## mirrord and Inspector Gadget
 
-<!-- footer: Konrad F. Heimel, 2023-08-17 -->
+<!-- footer: Konrad F. Heimel, 2023-10-19 -->
 
 ---
 
@@ -33,12 +41,10 @@ style: |
   Transfer your IDE into the Kubernetes cluster
 - **inspector gadget** 🔍<br>
   Cloud-native debugging using eBPF
-- **ephemeral containers** 🌩️<br>
-  Debug running pods without tools in the container image
 
 ---
 
-![bg right:25%](images/bg_vert3.png)
+![bg right:25%](images/bg_vert5.png)
 
 # What is **mirrord**? 🧩
 
@@ -52,17 +58,33 @@ style: |
 
 ---
 
+<!-- _class: default -->
+
+
+
+<div style="text-align: center; margin-top: 40px;">
+
+<font size="20">
+🎥 Live Demo
+</font>
+
+</div>
+
+---
+
 # How does it work?
+
+![bg right:25%](images/bg_vert4.png)
 
 <font size="4">
 
 1. Creates a **mirrord-agent** in the cluster:
-  - 🔄 Clones/steals & forwards traffic
+- 🔄 Clones/steals & forwards traffic
 2. Overrides local process' syscalls to:
-  - 🔊 Listen to agent's incoming traffic.
-  - 🔜 Send out traffic from remote pod.
-  - 📂 Access remote file system.
-  - 🌍 Merge pod's environment with local.
+- 🔊 Listen to agent's incoming traffic.
+- 🔜 Send out traffic from remote pod.
+- 📂 Access remote file system.
+- 🌍 Merge pod's environment with local.
 
 </font>
 
@@ -71,6 +93,7 @@ style: |
 </div>
 
 ---
+![bg right:25%](images/bg_vert2.png)
 
 # Language/Framework Support
 
@@ -156,7 +179,7 @@ spec:
   - `steal`: Capture incoming
   - `mirror`: Sniff & forward a copy
 -  `fs.mode`:
-  - `localwithoverrides`: Read Kubelet-generated files.
+- `localwithoverrides`: Read Kubelet-generated files.
 
 </font>
 </div>
@@ -233,20 +256,6 @@ vs
 
 ---
 
-<!-- _class: default -->
-
-
-
-<div style="text-align: center; margin-top: 40px;">
-
-<font size="20">
-🎥 Live Demo
-</font>
-
-</div>
-
----
-
 <!-- _class: center -->
 
 <div align="center">
@@ -266,11 +275,12 @@ vs
 
 ---
 
-# Introduction to eBPF 🔎
+<div align="center">
+<img src="images/ebpf_logo.png" width="400px">
+</div>
 
 <div class="columns">
 <div class="left">
-
 
 
 - 🖥️ Linux kernel technology.
@@ -314,37 +324,10 @@ while 1:
 
 ---
 
+# eBPF Overview
 <!-- _footer: "Source: https://www.brendangregg.com/ebpf.html" -->
 
-![ebpf.png](images%2Febpf.png)
-
----
-
-# The Gadgets 🧰
-
-![ height: 80%](images%2Fgadgets.png)
-
----
-
-# **Installing Inspector Gadget** 🛠️
-
-Install Inspector Gadget using [Krew](https://krew.sigs.k8s.io/) kubectl plugin manager:
-
-```bash
-$ kubectl krew install gadget
-```
-
-Deploy Inspector Gadget on Kubernetes:
-
-```bash
-$ kubectl gadget deploy
-
-Creating Namespace/gadget...
-...
-Creating DaemonSet/gadget...
-...
-Inspektor Gadget successfully deployed
-```
+![ebpf.png](./images/ebpf.png)
 
 ---
 
@@ -362,12 +345,16 @@ Inspektor Gadget successfully deployed
 </div>
 <div class="right">
 
-![width:350px](images/InspectorGadget.drawio.png)
+![width:350px](./images/InspectorGadget.drawio.png)
 
 </div>
 </div>
 
 ---
+
+<!-- _class: default -->
+
+
 
 <div style="text-align: center; margin-top: 40px;">
 
@@ -376,6 +363,34 @@ Inspektor Gadget successfully deployed
 </font>
 
 </div>
+
+---
+
+# The Gadgets 🧰
+
+![ height:80%](images/gadgets.png)
+
+---
+
+# **Installing Inspector Gadget** 🛠️
+
+Install Inspector Gadget using [Krew](https://krew.sigs.k8s.io/) kubectl plugin manager:
+
+```bash
+$ kubectl krew install gadget
+```
+
+Deploy Inspector Gadget on Kubernetes:
+
+```basha
+$ kubectl gadget deploy
+
+Creating Namespace/gadget...
+...
+Creating DaemonSet/gadget...
+...
+Inspektor Gadget successfully deployed
+```
 
 ---
 
